@@ -14,11 +14,11 @@ const SITE = {
 
 // Simple line icons, drawn with currentColor so they follow each category's colour.
 const ICONS = {
-  dehumidifiers: `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="3" width="12" height="18" rx="2.5"/><path d="M9 7h6M9 10h6"/><path d="M12 13.5c1.3 1.6 2 2.6 2 3.5a2 2 0 0 1-4 0c0-.9.7-1.9 2-3.5z"/></svg>`,
-  drying: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 6v14M20 6v14"/><path d="M7 6v6l2 2 2-2V6M13 6v8h4V6"/><path d="M4 20h16"/></svg>`,
-  heating: `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="9" width="18" height="10" rx="2"/><path d="M7 9v10M11 9v10M15 9v10"/><path d="M8 3c-.8 1 .8 2 0 3M12 3c-.8 1 .8 2 0 3M16 3c-.8 1 .8 2 0 3"/></svg>`,
-  damp: `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="1.5"/><path d="M12 3v18M4 12h16"/><path d="M7.5 6.5v1.5M16 15v2M8 15.5v1"/></svg>`,
-  calculator: `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="8" y="5.5" width="8" height="4" rx="1"/><path d="M8.5 13h.01M12 13h.01M15.5 13h.01M8.5 16.5h.01M12 16.5h.01M15.5 16.5h.01"/></svg>`,
+  dehumidifiers: `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="3" width="12" height="18" rx="2.5"/><path d="M9 7h6M9 10h6"/><path d="M12 13.5c1.3 1.6 2 2.6 2 3.5a2 2 0 0 1-4 0c0-.9.7-1.9 2-3.5z"/></svg>`,
+  drying: `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 6v14M20 6v14"/><path d="M7 6v6l2 2 2-2V6M13 6v8h4V6"/><path d="M4 20h16"/></svg>`,
+  heating: `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="9" width="18" height="10" rx="2"/><path d="M7 9v10M11 9v10M15 9v10"/><path d="M8 3c-.8 1 .8 2 0 3M12 3c-.8 1 .8 2 0 3M16 3c-.8 1 .8 2 0 3"/></svg>`,
+  damp: `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="1.5"/><path d="M12 3v18M4 12h16"/><path d="M7.5 6.5v1.5M16 15v2M8 15.5v1"/></svg>`,
+  calculator: `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="8" y="5.5" width="8" height="4" rx="1"/><path d="M8.5 13h.01M12 13h.01M15.5 13h.01M8.5 16.5h.01M12 16.5h.01M15.5 16.5h.01"/></svg>`,
 };
 
 const CATEGORIES = {
@@ -33,6 +33,7 @@ const amazonLinks = (html) => html.replace(/<a data-amazon="([^"]+)">/g, (_, q) 
   `<a href="https://www.amazon.co.uk/s?k=${encodeURIComponent(q)}&amp;tag=${SITE.amazonTag}" rel="sponsored nofollow noopener" target="_blank">`);
 
 const root = __dirname;
+const cssVersion = require("crypto").createHash("md5").update(fs.readFileSync(path.join(root, "static", "style.css"))).digest("hex").slice(0, 8);
 const out = path.join(root, "dist");
 fs.rmSync(out, { recursive: true, force: true });
 fs.mkdirSync(out, { recursive: true });
@@ -49,7 +50,7 @@ function parse(file) {
 
 const disclosure = `<p class="disclosure">This page contains affiliate links. If you buy through them we may earn a commission at no extra cost to you. <a href="/affiliate-disclosure/">How we make money</a>.</p>`;
 
-const logo = `<svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><path d="M4 15 16 5l12 10v12H4z" fill="var(--accent)"/><path d="M16 13c2.6 3.2 4 5.2 4 7a4 4 0 0 1-8 0c0-1.8 1.4-3.8 4-7z" fill="var(--bg)"/></svg>`;
+const logo = `<svg class="logo" viewBox="0 0 32 32" width="30" height="30" aria-hidden="true"><path d="M4 15 16 5l12 10v12H4z" fill="var(--accent)"/><path d="M16 13c2.6 3.2 4 5.2 4 7a4 4 0 0 1-8 0c0-1.8 1.4-3.8 4-7z" fill="var(--bg)"/></svg>`;
 
 function layout({ title, description, slug, body }) {
   const canonical = `${SITE.url}/${slug ? slug + "/" : ""}`;
@@ -69,7 +70,7 @@ function layout({ title, description, slug, body }) {
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/style.css?v=${cssVersion}">
 </head>
 <body>
 <header class="site"><div class="wrap">
