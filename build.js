@@ -10,6 +10,7 @@ const SITE = {
   url: (process.env.SITE_URL || "https://warmdryhome.co.uk").replace(/\/$/, ""),
   tagline: "Honest guides to keeping a UK home warm, dry and cheap to run",
   amazonTag: "warmdryhome-21",
+  pinterestVerify: "", // content of Pinterest's p:domain_verify meta tag, once Alx claims the site
 };
 
 // Simple line icons, drawn with currentColor so they follow each category's colour.
@@ -66,7 +67,7 @@ function layout({ title, description, slug, body }) {
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:url" content="${canonical}">
 <meta property="og:type" content="website">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+${SITE.pinterestVerify ? `<meta name="p:domain_verify" content="${SITE.pinterestVerify}">\n` : ""}<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -178,9 +179,7 @@ for (const [k, c] of Object.entries(CATEGORIES)) {
   }));
 }
 
-for (const f of fs.readdirSync(path.join(root, "static"))) {
-  fs.copyFileSync(path.join(root, "static", f), path.join(out, f));
-}
+fs.cpSync(path.join(root, "static"), out, { recursive: true });
 
 const urls = ["", "guides", ...Object.keys(CATEGORIES).map((k) => `topics/${k}`), ...pages.map((p) => p.slug)];
 fs.writeFileSync(path.join(out, "sitemap.xml"),
