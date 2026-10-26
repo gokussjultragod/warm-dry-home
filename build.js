@@ -3,9 +3,11 @@
 const fs = require("fs");
 const path = require("path");
 
+// BASE_PATH lets the site live under a subfolder (e.g. /warm-dry-home on github.io) until a custom domain is set.
+const BASE = (process.env.BASE_PATH || "").replace(/\/$/, "");
 const SITE = {
   name: "Warm Dry Home",
-  url: "https://warmdryhome.co.uk",
+  url: (process.env.SITE_URL || "https://warmdryhome.co.uk").replace(/\/$/, ""),
   tagline: "Honest guides to keeping a UK home warm, dry and cheap to run",
 };
 
@@ -53,7 +55,7 @@ ${isArticle ? `<article><h1>${esc(title)}</h1><p class="meta">Updated ${updated}
 function write(slug, html) {
   const dir = path.join(out, slug);
   fs.mkdirSync(dir, { recursive: true });
-  fs.writeFileSync(path.join(dir, "index.html"), html);
+  fs.writeFileSync(path.join(dir, "index.html"), html.replace(/(href|src)="\/(?!\/)/g, `$1="${BASE}/`));
 }
 
 const pages = fs.readdirSync(path.join(root, "content"))
