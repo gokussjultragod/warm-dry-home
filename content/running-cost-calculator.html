@@ -1,0 +1,56 @@
+<!---{"type":"page","slug":"running-cost-calculator","title":"Appliance running cost calculator (UK)","description":"Work out what a dehumidifier, heater, heated airer, electric blanket or any appliance costs to run per hour, day, month and year in the UK."}--->
+<h1>Appliance running cost calculator</h1>
+<p class="lead">Pick an appliance or type in its wattage, say how long you use it, and see what it costs on your electricity tariff.</p>
+<div class="calc">
+<label for="preset">Appliance</label>
+<select id="preset">
+<option value="200">Compressor dehumidifier (about 200 W)</option>
+<option value="550">Desiccant dehumidifier (about 550 W)</option>
+<option value="250">Heated clothes airer (about 250 W)</option>
+<option value="100">Electric blanket, double (about 100 W)</option>
+<option value="130">Heated throw (about 130 W)</option>
+<option value="2000">Oil-filled radiator (about 2,000 W)</option>
+<option value="2000">Fan heater (about 2,000 W)</option>
+<option value="2500">Tumble dryer, vented or condenser (about 2,500 W)</option>
+<option value="800">Heat pump tumble dryer (about 800 W)</option>
+<option value="custom">Something else (enter watts)</option>
+</select>
+<div class="row">
+<div><label for="watts">Power (watts)</label><input id="watts" type="number" min="1" value="200" inputmode="numeric"></div>
+<div><label for="hours">Hours per day</label><input id="hours" type="number" min="0" max="24" step="0.5" value="8" inputmode="decimal"></div>
+<div><label for="price">Price per kWh (pence)</label><input id="price" type="number" min="1" step="0.1" value="25" inputmode="decimal"></div>
+</div>
+<div class="results" aria-live="polite">
+<div><span>Per hour</span><strong id="r-hour">–</strong></div>
+<div><span>Per day</span><strong id="r-day">–</strong></div>
+<div><span>Per month</span><strong id="r-month">–</strong></div>
+<div><span>Per year</span><strong id="r-year">–</strong></div>
+</div>
+<p class="calc-note">The power on the label is the maximum. Appliances with a thermostat or humidistat often use much less once the room reaches the setting, so treat this as the worst case. Your price per kWh is on your energy bill or app.</p>
+</div>
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var money = function (pence) { return pence < 100 ? pence.toFixed(1).replace(/\.0$/, "") + "p" : "£" + (pence / 100).toFixed(2); };
+  function update() {
+    var kw = (parseFloat($("watts").value) || 0) / 1000, h = parseFloat($("hours").value) || 0, p = parseFloat($("price").value) || 0;
+    var hour = kw * p;
+    $("r-hour").textContent = money(hour);
+    $("r-day").textContent = money(hour * h);
+    $("r-month").textContent = money(hour * h * 30);
+    $("r-year").textContent = money(hour * h * 365);
+  }
+  $("preset").addEventListener("change", function () { if (this.value !== "custom") $("watts").value = this.value; else $("watts").focus(); update(); });
+  ["watts", "hours", "price"].forEach(function (id) { $(id).addEventListener("input", update); });
+  update();
+})();
+</script>
+<h2>How the sum works</h2>
+<p>Cost = watts ÷ 1,000 × hours × price per kWh. A 200 W dehumidifier running 8 hours uses 1.6 kWh. At 25p per kWh, that is 40p a day.</p>
+<h2>Guides that use these numbers</h2>
+<ul>
+<li><a href="/dehumidifier-electricity-use/">Do dehumidifiers use a lot of electricity?</a></li>
+<li><a href="/heated-airer-running-cost/">Heated airer vs tumble dryer running costs</a></li>
+<li><a href="/electric-blanket-running-cost/">Electric blanket running costs</a></li>
+<li><a href="/cheapest-way-to-heat-one-room/">Cheapest way to heat one room</a></li>
+</ul>
