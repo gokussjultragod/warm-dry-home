@@ -10,7 +10,7 @@ const SITE = {
   url: (process.env.SITE_URL || "https://warmdryhome.co.uk").replace(/\/$/, ""),
   tagline: "Honest guides to keeping a UK home warm, dry and cheap to run",
   amazonTag: "warmdryhome-21",
-  pinterestVerify: "", // content of Pinterest's p:domain_verify meta tag, once Alx claims the site
+  pinterestVerify: "95a85bafb72f4aaa08c5cc082949f4a7", // content of Pinterest's p:domain_verify meta tag, once Alx claims the site
 };
 
 // Simple line icons, drawn with currentColor so they follow each category's colour.
