@@ -9,7 +9,12 @@ const SITE = {
   name: "Warm Dry Home",
   url: (process.env.SITE_URL || "https://warmdryhome.co.uk").replace(/\/$/, ""),
   tagline: "Honest guides to keeping a UK home warm, dry and cheap to run",
+  amazonTag: "warmdryhome-21",
 };
+
+// <a data-amazon="search words">Label</a> becomes a tagged Amazon UK search link.
+const amazonLinks = (html) => html.replace(/<a data-amazon="([^"]+)">/g, (_, q) =>
+  `<a href="https://www.amazon.co.uk/s?k=${encodeURIComponent(q)}&amp;tag=${SITE.amazonTag}" rel="sponsored nofollow noopener" target="_blank">`);
 
 const root = __dirname;
 const out = path.join(root, "dist");
@@ -55,7 +60,7 @@ ${isArticle ? `<article><h1>${esc(title)}</h1><p class="meta">Updated ${updated}
 function write(slug, html) {
   const dir = path.join(out, slug);
   fs.mkdirSync(dir, { recursive: true });
-  fs.writeFileSync(path.join(dir, "index.html"), html.replace(/(href|src)="\/(?!\/)/g, `$1="${BASE}/`));
+  fs.writeFileSync(path.join(dir, "index.html"), amazonLinks(html).replace(/(href|src)="\/(?!\/)/g, `$1="${BASE}/`));
 }
 
 const pages = fs.readdirSync(path.join(root, "content"))
