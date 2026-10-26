@@ -26,10 +26,8 @@ jobs:
         with:
           node-version: 22
       - name: Build
-        # Remove BASE_PATH and set SITE_URL to the real domain once it is connected.
         env:
-          BASE_PATH: /warm-dry-home
-          SITE_URL: https://gokussjultragod.github.io/warm-dry-home
+          SITE_URL: https://warmdryhome.co.uk
         run: node build.js
       - uses: actions/upload-pages-artifact@v3
         with:
