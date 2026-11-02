@@ -1,5 +1,6 @@
 // Renders Pinterest pin images (1000x1500) into static/pins/ and a bulk-upload CSV into tools/.
-// Run locally: node tools/make-pins.js  (needs Playwright; not used by the site build)
+// Run locally: node tools/make-pins.js [batch]  (needs Playwright; not used by the site build)
+// Each pin may set "id" (image name, defaults to slug) and "batch"; with a batch argument the CSV only lists that batch.
 const fs = require("fs");
 const path = require("path");
 const { chromium } = require("playwright");
@@ -54,13 +55,14 @@ h1{font-family:Fraunces,serif;font-size:96px;line-height:1.05;margin-top:22px;le
   const page = await browser.newPage({ viewport: { width: 1000, height: 1500 } });
   for (const p of pins) {
     await page.setContent(html(p), { waitUntil: "networkidle" });
-    await page.screenshot({ path: path.join(outDir, `${p.slug}.png`) });
+    await page.screenshot({ path: path.join(outDir, `${p.id || p.slug}.png`) });
   }
   await browser.close();
 
   // Pinterest bulk upload format: Title, Media URL, Pinterest board, Thumbnail, Description, Link, Publish date, Keywords
   const q = (s) => `"${String(s).replace(/"/g, '""')}"`;
-  const rows = pins.map((p) => [p.title, `${SITE}/pins/${p.slug}.png`, BOARDS[p.cat], "", p.desc,
+  const batch = process.argv[2];
+  const rows = pins.filter((p) => !batch || p.batch === batch).map((p) => [p.title, `${SITE}/pins/${p.id || p.slug}.png`, BOARDS[p.cat], "", p.desc,
     `${SITE}/${p.slug}/?utm_source=pinterest`, "", ""].map(q).join(","));
   fs.writeFileSync(path.join(__dirname, "pinterest-bulk-upload.csv"),
     "Title,Media URL,Pinterest board,Thumbnail,Description,Link,Publish date,Keywords\n" + rows.join("\n") + "\n");

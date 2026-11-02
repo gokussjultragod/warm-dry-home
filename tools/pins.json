@@ -1,14 +1,216 @@
 [
- {"slug":"desiccant-vs-compressor-dehumidifier","cat":"dehumidifiers","kicker":"Before you buy a dehumidifier","hook":"Desiccant or compressor?","stat":"15°C","statLabel":"the temperature that decides which one you need","title":"Desiccant vs Compressor Dehumidifier: Which Is Best for a Cold UK Home?","desc":"Cold bedroom, conservatory or heated flat? The type of dehumidifier matters more than the brand. Simple guide with UK running costs so you buy the right one first time. #dehumidifier #damphome #ukhome"},
- {"slug":"dehumidifier-electricity-use","cat":"dehumidifiers","kicker":"Running costs, UK prices","hook":"What does a dehumidifier really cost to run?","stat":"4p","statLabel":"an hour for a typical compressor model","title":"How Much Does a Dehumidifier Cost to Run in the UK?","desc":"Per hour, per day and per month costs for compressor and desiccant dehumidifiers at UK electricity prices, plus 5 easy ways to pay less. #dehumidifier #energysaving #costofliving"},
- {"slug":"where-to-put-a-dehumidifier","cat":"dehumidifiers","kicker":"Most people get this wrong","hook":"Where to put your dehumidifier","stat":"50%","statLabel":"the humidity setting that saves money","title":"Where to Put a Dehumidifier (and How Long to Run It)","desc":"The best room, the best spot in the room and the settings that dry your home faster for less electricity. #dehumidifier #condensation #homehacks"},
- {"slug":"dehumidifier-for-drying-clothes","cat":"drying","kicker":"Winter laundry hack","hook":"Dry clothes indoors without the damp","stat":"20p","statLabel":"a load with a dehumidifier and airer","title":"Drying Clothes With a Dehumidifier: Cost per Load and Best Setup","desc":"Dry washing indoors in 4 to 8 hours for pennies, without condensation on your walls. The simple setup that works in UK homes. #dryingclothes #laundryhacks #dehumidifier"},
- {"slug":"heated-airer-running-cost","cat":"drying","kicker":"Heated airer vs tumble dryer","hook":"Which is cheaper per load?","stat":"30p","statLabel":"a load on a heated airer vs £1+ in a tumble dryer","title":"Heated Clothes Airer Running Cost vs Tumble Dryer (UK)","desc":"Pence per load for heated airers, vented, condenser and heat pump dryers, and how to dry indoors without causing mould. #heatedairer #laundry #costofliving"},
- {"slug":"heated-airer-overnight-safety","cat":"drying","kicker":"Safety check","hook":"Can you leave a heated airer on overnight?","stat":"5","statLabel":"mistakes to avoid","title":"Is It Safe to Leave a Heated Airer On Overnight?","desc":"What manufacturers and fire safety advice say, the mistakes to avoid and a safer way to dry washing while you sleep. #heatedairer #homesafety #ukhome"},
- {"slug":"cheapest-way-to-heat-one-room","cat":"heating","kicker":"Oil radiator vs fan heater","hook":"Cheapest way to heat one room","stat":"50p","statLabel":"an hour for any 2 kW heater, whatever the type","title":"Cheapest Way to Heat One Room in the UK: Oil Radiator vs Fan Heater","desc":"Running cost per hour for every type of electric heater and which one suits which room. Plus why wattage matters more than type. #heating #energybills #costofliving"},
- {"slug":"electric-blanket-running-cost","cat":"heating","kicker":"Stay warm for pennies","hook":"Electric blanket vs heating","stat":"2.5p","statLabel":"to warm your bed for an hour","title":"Electric Blanket Running Costs: Cheaper Than Heating the Bedroom?","desc":"What an electric blanket really costs per night in the UK, how it compares to central heating and the safety checks that matter. #electricblanket #stayingwarm #energysaving"},
- {"slug":"heating-on-low-all-day","cat":"heating","kicker":"The great British debate","hook":"Heating on low all day: cheaper or not?","stat":"1°C","statLabel":"lower on the thermostat saves real money","title":"Is It Cheaper to Leave the Heating On Low All Day? (UK)","desc":"The myth explained simply, when constant low heating does make sense and the settings that cut your bill without a cold, damp home. #heating #energybills #ukhome"},
- {"slug":"stop-condensation-on-windows","cat":"damp","kicker":"Wet windows every morning?","hook":"How to stop condensation on windows","stat":"7","statLabel":"free fixes that actually work","title":"How to Stop Condensation on Windows in Winter (UK Guide)","desc":"Why your windows are wet every morning, 7 free fixes in order of impact and when a dehumidifier is worth it. #condensation #mould #homehacks"},
- {"slug":"ideal-indoor-humidity-uk","cat":"damp","kicker":"Check this number","hook":"What humidity should your home be?","stat":"40–60%","statLabel":"the healthy range for UK homes","title":"What Humidity Should My House Be in Winter? (UK)","desc":"The humidity range that stops mould without drying you out, how to measure it for a few pounds and what to do if yours is too high. #humidity #damp #healthyhome"},
- {"slug":"remove-black-mould-safely","cat":"damp","kicker":"Clean it the safe way","hook":"Remove black mould from walls and seals","stat":"1 m²","statLabel":"the limit for doing it yourself","title":"How to Remove Black Mould From Walls and Window Seals Safely","desc":"What to use on painted walls, silicone and window frames, what never to mix and how to stop the mould coming back. #blackmould #cleaninghacks #damp"}
+ {
+  "slug": "desiccant-vs-compressor-dehumidifier",
+  "cat": "dehumidifiers",
+  "kicker": "Before you buy a dehumidifier",
+  "hook": "Desiccant or compressor?",
+  "stat": "15°C",
+  "statLabel": "the temperature that decides which one you need",
+  "title": "Desiccant vs Compressor Dehumidifier: Which Is Best for a Cold UK Home?",
+  "desc": "Cold bedroom, conservatory or heated flat? The type of dehumidifier matters more than the brand. Simple guide with UK running costs so you buy the right one first time. #dehumidifier #damphome #ukhome"
+ },
+ {
+  "slug": "dehumidifier-electricity-use",
+  "cat": "dehumidifiers",
+  "kicker": "Running costs, UK prices",
+  "hook": "What does a dehumidifier really cost to run?",
+  "stat": "4p",
+  "statLabel": "an hour for a typical compressor model",
+  "title": "How Much Does a Dehumidifier Cost to Run in the UK?",
+  "desc": "Per hour, per day and per month costs for compressor and desiccant dehumidifiers at UK electricity prices, plus 5 easy ways to pay less. #dehumidifier #energysaving #costofliving"
+ },
+ {
+  "slug": "where-to-put-a-dehumidifier",
+  "cat": "dehumidifiers",
+  "kicker": "Most people get this wrong",
+  "hook": "Where to put your dehumidifier",
+  "stat": "50%",
+  "statLabel": "the humidity setting that saves money",
+  "title": "Where to Put a Dehumidifier (and How Long to Run It)",
+  "desc": "The best room, the best spot in the room and the settings that dry your home faster for less electricity. #dehumidifier #condensation #homehacks"
+ },
+ {
+  "slug": "dehumidifier-for-drying-clothes",
+  "cat": "drying",
+  "kicker": "Winter laundry hack",
+  "hook": "Dry clothes indoors without the damp",
+  "stat": "20p",
+  "statLabel": "a load with a dehumidifier and airer",
+  "title": "Drying Clothes With a Dehumidifier: Cost per Load and Best Setup",
+  "desc": "Dry washing indoors in 4 to 8 hours for pennies, without condensation on your walls. The simple setup that works in UK homes. #dryingclothes #laundryhacks #dehumidifier"
+ },
+ {
+  "slug": "heated-airer-running-cost",
+  "cat": "drying",
+  "kicker": "Heated airer vs tumble dryer",
+  "hook": "Which is cheaper per load?",
+  "stat": "30p",
+  "statLabel": "a load on a heated airer vs £1+ in a tumble dryer",
+  "title": "Heated Clothes Airer Running Cost vs Tumble Dryer (UK)",
+  "desc": "Pence per load for heated airers, vented, condenser and heat pump dryers, and how to dry indoors without causing mould. #heatedairer #laundry #costofliving"
+ },
+ {
+  "slug": "heated-airer-overnight-safety",
+  "cat": "drying",
+  "kicker": "Safety check",
+  "hook": "Can you leave a heated airer on overnight?",
+  "stat": "5",
+  "statLabel": "mistakes to avoid",
+  "title": "Is It Safe to Leave a Heated Airer On Overnight?",
+  "desc": "What manufacturers and fire safety advice say, the mistakes to avoid and a safer way to dry washing while you sleep. #heatedairer #homesafety #ukhome"
+ },
+ {
+  "slug": "cheapest-way-to-heat-one-room",
+  "cat": "heating",
+  "kicker": "Oil radiator vs fan heater",
+  "hook": "Cheapest way to heat one room",
+  "stat": "50p",
+  "statLabel": "an hour for any 2 kW heater, whatever the type",
+  "title": "Cheapest Way to Heat One Room in the UK: Oil Radiator vs Fan Heater",
+  "desc": "Running cost per hour for every type of electric heater and which one suits which room. Plus why wattage matters more than type. #heating #energybills #costofliving"
+ },
+ {
+  "slug": "electric-blanket-running-cost",
+  "cat": "heating",
+  "kicker": "Stay warm for pennies",
+  "hook": "Electric blanket vs heating",
+  "stat": "2.5p",
+  "statLabel": "to warm your bed for an hour",
+  "title": "Electric Blanket Running Costs: Cheaper Than Heating the Bedroom?",
+  "desc": "What an electric blanket really costs per night in the UK, how it compares to central heating and the safety checks that matter. #electricblanket #stayingwarm #energysaving"
+ },
+ {
+  "slug": "heating-on-low-all-day",
+  "cat": "heating",
+  "kicker": "The great British debate",
+  "hook": "Heating on low all day: cheaper or not?",
+  "stat": "1°C",
+  "statLabel": "lower on the thermostat saves real money",
+  "title": "Is It Cheaper to Leave the Heating On Low All Day? (UK)",
+  "desc": "The myth explained simply, when constant low heating does make sense and the settings that cut your bill without a cold, damp home. #heating #energybills #ukhome"
+ },
+ {
+  "slug": "stop-condensation-on-windows",
+  "cat": "damp",
+  "kicker": "Wet windows every morning?",
+  "hook": "How to stop condensation on windows",
+  "stat": "7",
+  "statLabel": "free fixes that actually work",
+  "title": "How to Stop Condensation on Windows in Winter (UK Guide)",
+  "desc": "Why your windows are wet every morning, 7 free fixes in order of impact and when a dehumidifier is worth it. #condensation #mould #homehacks"
+ },
+ {
+  "slug": "ideal-indoor-humidity-uk",
+  "cat": "damp",
+  "kicker": "Check this number",
+  "hook": "What humidity should your home be?",
+  "stat": "40–60%",
+  "statLabel": "the healthy range for UK homes",
+  "title": "What Humidity Should My House Be in Winter? (UK)",
+  "desc": "The humidity range that stops mould without drying you out, how to measure it for a few pounds and what to do if yours is too high. #humidity #damp #healthyhome"
+ },
+ {
+  "slug": "remove-black-mould-safely",
+  "cat": "damp",
+  "kicker": "Clean it the safe way",
+  "hook": "Remove black mould from walls and seals",
+  "stat": "1 m²",
+  "statLabel": "the limit for doing it yourself",
+  "title": "How to Remove Black Mould From Walls and Window Seals Safely",
+  "desc": "What to use on painted walls, silicone and window frames, what never to mix and how to stop the mould coming back. #blackmould #cleaninghacks #damp"
+ },
+ {
+  "slug": "cheap-draught-proofing",
+  "cat": "heating",
+  "kicker": "Before you buy a heater",
+  "hook": "Stop the draughts first",
+  "stat": "8",
+  "statLabel": "cheap DIY fixes for doors, windows and floors",
+  "title": "Cheap Draught-Proofing: DIY Fixes That Keep a UK Home Warmer",
+  "desc": "Where heat really escapes, the low-cost draught fixes worth doing first and the vents you must never block. Renter-friendly options too. #draughtproofing #energysaving #ukhome",
+  "batch": "2026-11-02"
+ },
+ {
+  "slug": "mould-in-wardrobe",
+  "cat": "damp",
+  "kicker": "Musty smell in the wardrobe?",
+  "hook": "How to stop mould in your wardrobe",
+  "stat": "5 cm",
+  "statLabel": "gap from the wall that makes a big difference",
+  "title": "Mould in Your Wardrobe: Why It Happens and How to Stop It",
+  "desc": "Why clothes and shoes go mouldy in UK wardrobes, how to clean them safely and 6 simple changes that stop it coming back. #mould #wardrobe #damphome",
+  "batch": "2026-11-02"
+ },
+ {
+  "slug": "heated-airer-running-cost",
+  "id": "heated-airer-running-cost-2",
+  "cat": "drying",
+  "kicker": "Cost-of-living laundry",
+  "hook": "Ditch the tumble dryer this winter?",
+  "stat": "£1+",
+  "statLabel": "per load in a vented dryer vs about 30p on a heated airer",
+  "title": "Heated Airer vs Tumble Dryer: Which Is Cheaper Per Load? (UK)",
+  "desc": "We did the sums at UK electricity prices: heated airers, vented, condenser and heat pump dryers compared pence per load. #laundryhacks #heatedairer #savemoney",
+  "batch": "2026-11-02"
+ },
+ {
+  "slug": "electric-blanket-running-cost",
+  "id": "electric-blanket-running-cost-2",
+  "cat": "heating",
+  "kicker": "Cosy for pennies",
+  "hook": "Turn the heating down, warm the bed instead",
+  "stat": "10p",
+  "statLabel": "for a whole night on low",
+  "title": "How Much Does an Electric Blanket Cost to Run Per Night? (UK)",
+  "desc": "Electric blanket and heated throw running costs at UK prices, plus the safety checks every blanket needs before winter. #electricblanket #cosyhome #energysaving",
+  "batch": "2026-11-02"
+ },
+ {
+  "slug": "stop-condensation-on-windows",
+  "id": "stop-condensation-on-windows-2",
+  "cat": "damp",
+  "kicker": "Free fix, takes 10 minutes",
+  "hook": "The morning habit that stops wet windows",
+  "stat": "10 min",
+  "statLabel": "window wide open each morning, door closed",
+  "title": "Stop Window Condensation for Free: The 10-Minute Morning Habit",
+  "desc": "Streaming windows every morning? These free habits stop condensation before it turns into black mould. UK guide. #condensation #mouldprevention #homehacks",
+  "batch": "2026-11-02"
+ },
+ {
+  "slug": "desiccant-vs-compressor-dehumidifier",
+  "id": "desiccant-vs-compressor-dehumidifier-2",
+  "cat": "dehumidifiers",
+  "kicker": "Cold bedroom? Read this first",
+  "hook": "The dehumidifier type that works in cold rooms",
+  "stat": "below 15°C",
+  "statLabel": "pick desiccant, not compressor",
+  "title": "Which Dehumidifier Works in a Cold Room? Desiccant vs Compressor",
+  "desc": "Compressor dehumidifiers struggle in cold British bedrooms. Here's why, and when a desiccant model is the better buy. #dehumidifier #damp #ukhomes",
+  "batch": "2026-11-02"
+ },
+ {
+  "slug": "running-cost-calculator",
+  "id": "running-cost-calculator",
+  "cat": "heating",
+  "kicker": "Free calculator",
+  "hook": "What does your appliance really cost to run?",
+  "stat": "4",
+  "statLabel": "answers: per hour, day, month and year",
+  "title": "Free Appliance Running Cost Calculator (UK Electricity Prices)",
+  "desc": "Pick a dehumidifier, heater, airer, electric blanket or any appliance and see what it costs per hour, day, month and year on your tariff. #energybills #costofliving #calculator",
+  "batch": "2026-11-02"
+ },
+ {
+  "slug": "dehumidifier-for-drying-clothes",
+  "id": "dehumidifier-for-drying-clothes-2",
+  "cat": "drying",
+  "kicker": "Small room, door shut",
+  "hook": "Dry a full wash indoors without the damp",
+  "stat": "4–8 h",
+  "statLabel": "for most loads with a dehumidifier and airer",
+  "title": "How to Dry Clothes Indoors Fast Without Damp (Dehumidifier Method)",
+  "desc": "The simple setup that dries washing indoors in hours for pennies and keeps the moisture off your walls. #dryingclothes #laundry #dehumidifier",
+  "batch": "2026-11-02"
+ }
 ]
