@@ -120,3 +120,14 @@ th, td { border-bottom: 1px solid var(--line); padding: 9px 10px; }
 .results span { display: block; font-size: 13px; color: var(--muted); }
 .results strong { font-family: Fraunces, Georgia, serif; font-size: 24px; }
 .calc-note { font-size: 14px; color: var(--muted); margin-top: 12px; }
+
+/* FAQ and Pinterest save blocks */
+.faq { margin: 36px 0 8px; }
+.faq details { border: 1px solid var(--line); border-radius: var(--radius); background: var(--card); padding: 0 18px; margin: 10px 0; }
+.faq summary { cursor: pointer; font-weight: 600; padding: 14px 0; list-style-position: outside; }
+.faq details[open] summary { border-bottom: 1px solid var(--line); }
+.faq details p { margin: 12px 0 16px; }
+.pin-save { display: flex; gap: 18px; align-items: center; margin: 28px 0 8px; padding: 16px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--card); }
+.pin-save img { width: 120px; height: auto; border-radius: 10px; flex: none; }
+.pin-save .btn { margin-top: 10px; font-size: 15px; padding: 9px 16px; }
+@media (max-width: 520px) { .pin-save { flex-direction: column; text-align: center; } }
