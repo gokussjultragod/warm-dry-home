@@ -53,8 +53,14 @@ const disclosure = `<p class="disclosure">This page contains affiliate links. If
 
 const logo = `<svg class="logo" viewBox="0 0 32 32" width="30" height="30" aria-hidden="true"><path d="M4 15 16 5l12 10v12H4z" fill="var(--accent)"/><path d="M16 13c2.6 3.2 4 5.2 4 7a4 4 0 0 1-8 0c0-1.8 1.4-3.8 4-7z" fill="var(--bg)"/></svg>`;
 
-function layout({ title, description, slug, body }) {
+// Pinterest pin image for a page, if one exists in static/pins (used for og:image and the "save" block).
+const pinFor = (slug) => fs.existsSync(path.join(__dirname, "static", "pins", `${slug}.png`)) ? `/pins/${slug}.png` : null;
+const jsonLd = (obj) => `<script type="application/ld+json">${JSON.stringify(obj).replace(/</g, "\\u003c")}</script>`;
+
+function layout({ title, description, slug, body, type, schema = [] }) {
   const canonical = `${SITE.url}/${slug ? slug + "/" : ""}`;
+  const pin = pinFor(slug);
+  const ogImage = `${SITE.url}${pin || "/pins/running-cost-calculator.png"}`;
   return `<!doctype html>
 <html lang="en-GB">
 <head>
@@ -66,7 +72,12 @@ function layout({ title, description, slug, body }) {
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:url" content="${canonical}">
-<meta property="og:type" content="website">
+<meta property="og:type" content="${type === "article" ? "article" : "website"}">
+<meta property="og:image" content="${ogImage}">
+<meta property="og:site_name" content="${SITE.name}">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+${schema.map(jsonLd).join("\n")}
 ${SITE.pinterestVerify ? `<meta name="p:domain_verify" content="${SITE.pinterestVerify}">\n` : ""}<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -105,6 +116,39 @@ const pages = fs.readdirSync(path.join(root, "content"))
 const articles = pages.filter((p) => p.type === "article")
   .sort((a, b) => b.updated.localeCompare(a.updated) || a.title.localeCompare(b.title));
 
+// Optional "faq": [{"q": "...", "a": "..."}] in an article header becomes a visible FAQ section plus FAQPage data.
+const faqHtml = (p) => p.faq && p.faq.length ? `<section class="faq"><h2>Common questions</h2>${p.faq.map((f) =>
+  `<details><summary>${esc(f.q)}</summary><p>${f.a}</p></details>`).join("\n")}</section>` : "";
+const strip = (h) => String(h).replace(/<[^>]+>/g, "");
+
+function articleSchema(p) {
+  const url = `${SITE.url}/${p.slug}/`;
+  const pin = pinFor(p.slug);
+  const org = { "@type": "Organization", name: SITE.name, url: SITE.url };
+  const list = [
+    { "@context": "https://schema.org", "@type": "Article", headline: p.title, description: p.description,
+      dateModified: p.updated, datePublished: p.published || p.updated, mainEntityOfPage: url,
+      ...(pin ? { image: SITE.url + pin } : {}), author: org, publisher: org, inLanguage: "en-GB" },
+    { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE.url + "/" },
+      { "@type": "ListItem", position: 2, name: CATEGORIES[p.category].name, item: `${SITE.url}/topics/${p.category}/` },
+      { "@type": "ListItem", position: 3, name: p.title, item: url }] },
+  ];
+  if (p.faq && p.faq.length) list.push({ "@context": "https://schema.org", "@type": "FAQPage",
+    mainEntity: p.faq.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: strip(f.a) } })) });
+  return list;
+}
+
+// "Save this guide" block with the pin image and a Pinterest save link.
+function pinSave(p) {
+  const pin = pinFor(p.slug);
+  if (!pin) return "";
+  const url = `${SITE.url}/${p.slug}/`;
+  const save = `https://www.pinterest.com/pin/create/button/?url=${encodeURIComponent(url)}&amp;media=${encodeURIComponent(SITE.url + pin)}&amp;description=${encodeURIComponent(p.title)}`;
+  return `<aside class="pin-save"><img src="${pin}" alt="${esc(p.title)}" width="200" height="300" loading="lazy">
+<div><strong>Save this guide for later</strong><br>Pin it to your Pinterest board so you can find it again when you need it.<br><a class="btn" href="${save}" target="_blank" rel="noopener">Save to Pinterest</a></div></aside>`;
+}
+
 const chip = (k) => `<a class="chip c-${k}" href="/topics/${k}/">${ICONS[k]}${CATEGORIES[k].name}</a>`;
 
 const card = (a) => `<li class="card c-${a.category}"><a href="/${a.slug}/">
@@ -120,11 +164,13 @@ for (const p of pages) {
     continue;
   }
   const related = articles.filter((a) => a.category === p.category && a.slug !== p.slug);
-  write(p.slug, layout({ ...p, body: `<div class="wrap narrow"><article>
+  write(p.slug, layout({ ...p, schema: articleSchema(p), body: `<div class="wrap narrow"><article>
 <div class="article-head c-${p.category}">${chip(p.category)}<h1>${esc(p.title)}</h1>
 <p class="meta">Updated ${prettyDate(p.updated)} · Prices worked out at UK electricity rates</p></div>
 ${disclosure}${p.body}
+${faqHtml(p)}
 <aside class="calc-cta"><span class="card-icon">${ICONS.calculator}</span><div><strong>Work out your own costs</strong><br>Use our free <a href="/running-cost-calculator/">running cost calculator</a> for any appliance.</div></aside>
+${pinSave(p)}
 </article>
 ${related.length ? `<section class="related"><h2>More on ${CATEGORIES[p.category].name.toLowerCase()}</h2>${cardList(related)}</section>` : ""}
 </div>` }));
@@ -181,10 +227,11 @@ for (const [k, c] of Object.entries(CATEGORIES)) {
 
 fs.cpSync(path.join(root, "static"), out, { recursive: true });
 
-const urls = ["", "guides", ...Object.keys(CATEGORIES).map((k) => `topics/${k}`), ...pages.map((p) => p.slug)];
+const latest = articles.map((a) => a.updated).sort().pop();
+const urls = [["", latest], ["guides", latest], ...Object.keys(CATEGORIES).map((k) => [`topics/${k}`, latest]), ...pages.map((p) => [p.slug, p.updated])];
 fs.writeFileSync(path.join(out, "sitemap.xml"),
   `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
-  urls.map((u) => `<url><loc>${SITE.url}/${u ? u + "/" : ""}</loc></url>`).join("\n") + `\n</urlset>\n`);
+  urls.map(([u, d]) => `<url><loc>${SITE.url}/${u ? u + "/" : ""}</loc>${d ? `<lastmod>${d}</lastmod>` : ""}</url>`).join("\n") + `\n</urlset>\n`);
 fs.writeFileSync(path.join(out, "robots.txt"), `User-agent: *\nAllow: /\nSitemap: ${SITE.url}/sitemap.xml\n`);
 
 console.log(`Built ${urls.length} pages into dist/`);
